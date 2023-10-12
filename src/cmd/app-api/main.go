@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/manudevelopia/app-go/src/internal/controller"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -8,10 +9,12 @@ import (
 
 func main() {
 	e := echo.New()
-	e.GET("/", gretting)
+	e.GET("/", greeting)
+	e.GET("/users", controller.UserAll)
+	e.GET("/users/:id", controller.UserById)
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
-func gretting(c echo.Context) error {
+func greeting(c echo.Context) error {
 	return c.String(http.StatusOK, "Hello, World!")
 }
