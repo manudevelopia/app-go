@@ -8,8 +8,8 @@ RUN go mod download
 
 COPY ./src /app/src
 
-RUN go build -o app-api src/cmd/app-api/main.go
+RUN go build -o api src/cmd/api/main.go
 
 EXPOSE 1323
 
-CMD [ "/app/app-api" ]
+CMD [ "/app/api" ]
