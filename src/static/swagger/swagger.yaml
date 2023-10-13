@@ -9,15 +9,13 @@ servers:
   - url: /v1/
 paths:
   '/users':
+    get:
+      responses:
+        200:
+          description: Request has been processed
+        500:
+          description: Internal server error
     post:
-      operationId: create User
-      parameters:
-        - in: header
-          name: X-Caller
-          schema:
-            type: string
-          required: true
-          example: swagger
       requestBody:
         required: true
         content:
@@ -33,6 +31,23 @@ paths:
           description: Request has been processed
         400:
           description: Provided reqeust is not valid
+        500:
+          description: Internal server error
+  '/users/{userId}':
+    get:
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+            required: true
+      responses:
+        204:
+          description: Request has been processed
+        400:
+          description: Provided reqeust is not valid
+        404:
+          description: No found resources for provided request
         500:
           description: Internal server error
 components:
