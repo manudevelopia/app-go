@@ -12,6 +12,7 @@ func main() {
 	e.GET("/", greeting)
 	e.GET("/users", controller.UserAll)
 	e.GET("/users/:id", controller.UserById)
+	e.Static("/doc", "cmd/api/swagger")
 	e.Logger.Fatal(e.Start(":1323"))
 }
 

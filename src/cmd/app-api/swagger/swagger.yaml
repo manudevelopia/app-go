@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  description: REST API
+  title:  API
+  version: '1.0'
+  contact:
+    email: email@emil.com
+servers:
+  - url: /v1/
+paths:
+  '/users':
+    post:
+      operationId: create User
+      parameters:
+        - in: header
+          name: X-Caller
+          schema:
+            type: string
+          required: true
+          example: swagger
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+              example:
+                { "name": "John Doe", "email": "john.doe@email.com" }
+      responses:
+        204:
+          description: Request has been processed
+        400:
+          description: Provided reqeust is not valid
+        500:
+          description: Internal server error
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
