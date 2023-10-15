@@ -10,6 +10,12 @@ servers:
 paths:
   '/users':
     get:
+      parameters:
+        - in: query
+          name: email
+          schema:
+            type: string
+            required: false
       responses:
         200:
           description: Request has been processed
