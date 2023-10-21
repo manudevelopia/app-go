@@ -2,10 +2,10 @@ package service
 
 import "github.com/manudevelopia/app-go/src/internal/model"
 
-var users = map[string]model.User{
-	"1": {Name: "John doe", Email: "john.doe@email.com"},
-	"2": {Name: "Jane doe", Email: "jane.doe@email.com"},
-	"3": {Name: "Douglas Quake", Email: "douglas.quake@email.com"},
+var users = map[int]model.User{
+	1: {Name: "John doe", Email: "john.doe@email.com"},
+	2: {Name: "Jane doe", Email: "jane.doe@email.com"},
+	3: {Name: "Douglas Quake", Email: "douglas.quake@email.com"},
 }
 
 func UserAll(email string) []model.User {
@@ -22,6 +22,7 @@ func UserAll(email string) []model.User {
 	return values
 }
 
-func UserById(id string) model.User {
-	return users[id]
+func UserById(id int) (model.User, bool) {
+	value, exists := users[id]
+	return value, exists
 }
